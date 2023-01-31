@@ -49,11 +49,11 @@ class Carousel{
     this.right_button.addEventListener("click", () => this.change_index(1));
 
     // Znajduje i przypisuje przycisk startu
-    this.start_button = this.carousel_tag.querySelector(".ti-arrow-bar-left");
+    this.start_button = this.carousel_tag.querySelector(".ti-arrow-big-left-lines");
     this.start_button.addEventListener("click", () => this.set_index(this.min_index));
 
     // Znajduje i przypisuje przycisk końca
-    this.end_button = this.carousel_tag.querySelector(".ti-arrow-bar-right");
+    this.end_button = this.carousel_tag.querySelector(".ti-arrow-big-right-lines");
     this.end_button.addEventListener("click", () => this.set_index(this.max_index));
 
     this.images.forEach((current, i) =>{
