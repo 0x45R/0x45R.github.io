@@ -1,0 +1,92 @@
+*{
+  margin: 10px; 
+  padding:0; 
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.carousel{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-width: 300px;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  border-radius: 20px;
+
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  max-width: 60px;
+}
+
+
+.slides{
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.slide{
+  width: 0%;
+  margin: 0px;
+  object-fit: contain;
+  transition: .4s all;
+}
+.row.button{
+  flex-wrap: wrap;
+}
+.slide.active{
+  width: 100%;
+}
+
+i{
+  display: block;
+  font-size: 1.5em;
+  padding: 5px;
+  margin: 10px;
+  color: #909090;
+  border-radius: 10px;
+  transition: .2s all;
+}
+
+i.ti-circle{
+  transform: scale(1.25);
+  color: grey;
+}
+
+i:hover{
+  transform: scale(1.5);
+  color: grey;
+}
+
+i.ti-circle{
+  color: grey;
+}
+
+.ti::before{
+  content: "#";
+  font-style: normal;
+}
