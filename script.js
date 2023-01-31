@@ -14,13 +14,13 @@ class Carousel{
      <div class="row">
         <div class="row">
           <i class="ti ti-arrow-big-left"></i>
-          <i class="ti ti-arrow-bar-left"></i>
+          <i class="ti ti-arrow-big-left-lines"></i>
         </div>
         <div class="slides">
         </div>
         <div class="row">
           <i class="ti ti-arrow-bar-right"></i>
-          <i class="ti ti-arrow-big-right"></i>
+          <i class="ti ti-arrow-big-right-lines"></i>
         </div>
         </div>
         <div class="row">
