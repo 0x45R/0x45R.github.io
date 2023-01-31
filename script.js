@@ -19,8 +19,8 @@ class Carousel{
         <div class="slides">
         </div>
         <div class="row">
-          <i class="ti ti-arrow-bar-right"></i>
           <i class="ti ti-arrow-big-right-lines"></i>
+          <i class="ti ti-arrow-big-right"></i>
         </div>
         </div>
         <div class="row">
