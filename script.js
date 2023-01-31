@@ -12,13 +12,13 @@ class Carousel{
     // Tworzy strukturę karuzelki
     this.carousel_tag.innerHTML = `
      <div class="row">
-        <div class="col">
+        <div class="row">
           <i class="ti ti-arrow-big-left"></i>
           <i class="ti ti-arrow-bar-left"></i>
         </div>
         <div class="slides">
         </div>
-        <div class="col">
+        <div class="row">
           <i class="ti ti-arrow-bar-right"></i>
           <i class="ti ti-arrow-big-right"></i>
         </div>
