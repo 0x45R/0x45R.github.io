@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   display: flex;
   flex-direction: column;
@@ -92,17 +96,17 @@ a{
 
 .card-container-title{
   font-weight: 800;
-  font-size: 3em;
+  font-size: 6vmin;
 }
 
 .card-container-subtitle{
   font-weight: 600;
-  font-size: 1em;
+  font-size: 4vmin;
 }
 
 .card-container-paragraph{
   font-weight: 400;
-  font-size: 1.5em;
+  font-size: 3vmin;
 }
 
 .navigation-container-scrollable-container{
