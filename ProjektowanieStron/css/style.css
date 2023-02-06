@@ -99,6 +99,7 @@ a{
 .card-container-title{
   font-weight: 800;
   font-size: 6vmin;
+  white-space: nowrap;
 }
 
 .card-container-subtitle{
@@ -145,10 +146,11 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 }
 
 .navigation-container-button{
-  padding: .7em;
+  padding: .5em;
   border-radius: 10px;
   border: 1px solid black;
   background: yellowgreen;
@@ -159,6 +161,7 @@ a{
   gap: .5em;
   justify-content: center;
   align-items: center;
+  white-space:nowrap;
 }
 .navigation-background{
   position: fixed;
