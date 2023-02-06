@@ -77,12 +77,17 @@ a{
   }
 }
 
-.top-card-container-icon{
+.top-card-container-animated-icon{
   font-size: 4vmin;
   position: sticky;
   z-index: 1;
   margin-top: 1em;
   animation: 1s icon-float infinite alternate;
+}
+.top-card-container-static-icon{
+  font-size: 4vmin;
+  position: sticky;
+  z-index: 1;
 }
 .card-container{
   width: 100%;
