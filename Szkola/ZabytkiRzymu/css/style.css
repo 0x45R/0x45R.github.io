@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+.rome-container{
+  height: 100vh;
+  background: white;
+  padding: 10vmin;
+  font-family: "Montserrat";
+  font-size: 20px;
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rome-title{
+  font-weight: 800;
+  font-size: 2em;
+  text-align: center;
+}
+
+.rome-grid-container{
+  background: gray;
+  display: grid;
+  grid-auto-rows: 100px auto / 50px 1fr;
+}
