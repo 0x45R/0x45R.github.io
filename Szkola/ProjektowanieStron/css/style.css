@@ -21,6 +21,7 @@ a{
   text-decoration: none;
   transition: 0.5s all;
 }
+
 .navigation-anchor{
   transition: 0.5s all;
 }
@@ -89,7 +90,7 @@ a{
   animation: 1s icon-float infinite alternate;
 }
 .top-card-container-static-icon{
-  font-size: 4vmin;
+  font-size: 3vmax;
   position: sticky;
   z-index: 1;
 }
@@ -130,7 +131,7 @@ a{
   overflow-x: auto;
   text-align: center;
   gap: 1em;
-  padding: 1em;
+  padding: .7em;
   font-weight: 500;
 }
 
