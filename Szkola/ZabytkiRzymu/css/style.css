@@ -7,7 +7,6 @@
 }
 
 .rome-container{
-  height: 100vh;
   background: white;
   padding: 10vmin;
   font-family: "Montserrat";
@@ -15,7 +14,6 @@
   display: flex;
   gap: 1em;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -25,8 +23,29 @@
   text-align: center;
 }
 
+.rome-grid-item{
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+.rome-grid-image{
+  background: red;
+  flex: 1;
+  display: flex;
+  border: none;
+  border-radius: 10px;
+}
+
 .rome-grid-container{
-  background: gray;
+  background: #cacaca;
   display: grid;
-  grid-auto-rows: 100px auto / 50px 1fr;
+  grid-template-columns: repeat(3,auto);
+  gap: 10px;
+  border: 5px solid black;
+  border-radius: 20px;
+  padding: 20px;
 }
