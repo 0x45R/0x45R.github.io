@@ -34,7 +34,6 @@ body{
 }
 
 .card-container:hover{
-  transform: scale(1.2);
   box-shadow: 0px 0px 20px black;
 }
 
