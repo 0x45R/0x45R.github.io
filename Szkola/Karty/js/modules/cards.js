@@ -131,9 +131,9 @@ export class Card{
     if(this.price > 2 && this.price < 16){
       this.DOM_object.animate(
         [
-          {transform: `rotate3d(0,0,0,0deg)`},
-          {transform: `rotate3d(0,1,0,${90*direction}deg)`},       
-          {transform: `rotate3d(0,0,0,0deg)`},
+          {transform: `rotate3d(0,0,0,0deg) scale(1.1)`},
+          {transform: `rotate3d(0,1,0,${90*direction}deg) scale(1.1)`},       
+          {transform: `rotate3d(0,0,0,0deg) scale(1.1)`},
         ],
         {
           duration: 500,
