@@ -1,21 +1,27 @@
 export const PieceType = {
   "pawn":{
-    "innerHTML": `♙`
+    "innerHTML": `♙`,
+    'short': 'p'
   },
   "rook":{
-    "innerHTML": `♖`
+    "innerHTML": `♖`,
+    'short': 'r'
   },
   "knight":{
-    "innerHTML": `♘`
+    "innerHTML": `♘`,
+    'short': 'n'
   },
   "bishop":{
-    "innerHTML": `♗`
+    "innerHTML": `♗`,
+    'short': 'b'
   },
   "queen":{
-    "innerHTML": `♕`
+    "innerHTML": `♕`,
+    'short': 'q'
   },
   "king":{
-    "innerHTML": `♔`
+    "innerHTML": `♔`,
+    'short': 'k'
   }
 }
 
@@ -34,6 +40,32 @@ export class ChessGame extends HTMLElement{
 
   // Implement fen notation
   convertFenToPieces(fen, board){
+    let boardIndex = 0;
+    fen = fen.substring(0, fen.length-13)
+    for(let i = 0; i < fen.length; i++){       
+      let tile = board.querySelector(`[tile-index="${boardIndex}"]`)
+      let char = fen[i];
+      console.log(char)
+      if(!isNaN(char - parseFloat(char))){
+        boardIndex+=parseInt(char);
+        console.log("HELP", boardIndex)
+      }
+      else{
+      Object.keys(PieceType).forEach((current)=>{
+
+          if(char.toLowerCase() == PieceType[current].short){
+            let chessPiece = document.createElement('chess-piece');
+            chessPiece.setAttribute('type',current);
+            (char == char.toLowerCase()) ? chessPiece.setAttribute('color', 'black') : chessPiece.setAttribute('color', 'white')
+            tile.appendChild(chessPiece)
+            boardIndex++;
+          }
+        })
+      }
+    }
+    
+
+    /*
     for(let c = 0; c < 8; c++){
       for(let r = 0; r < 8; r++){
         let tile = board.querySelector(`[tile-index="${r+c*8}"]`)
@@ -45,7 +77,7 @@ export class ChessGame extends HTMLElement{
           tile.appendChild(chessPiece)
         }
       }
-    }
+    }*/
   }
 
   connectedCallback(){
@@ -88,6 +120,10 @@ export class ChessTile extends HTMLElement{
 export class ChessPiece extends HTMLElement{
   constructor(){
     super();
+  }
+
+  get pieceColor(){
+    return this.getAttribute('color')
   }
 
   get pieceType(){

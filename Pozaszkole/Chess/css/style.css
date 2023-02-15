@@ -21,7 +21,6 @@ chess-tile{
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 chess-tile.black{
@@ -44,7 +43,10 @@ chess-piece{
   text-align: center;
   position: absolute;
   user-select: none;
+}
 
+chess-piece[color='white']{
+  color: white;
 }
 
 chess-game{
