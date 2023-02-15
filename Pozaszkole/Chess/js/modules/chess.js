@@ -1,26 +1,26 @@
 export const PieceType = {
   "pawn":{
-    "innerHTML": `♙`,
+    "innerHTML": `♟︎`,
     'short': 'p'
   },
   "rook":{
-    "innerHTML": `♖`,
+    "innerHTML": `♜`,
     'short': 'r'
   },
   "knight":{
-    "innerHTML": `♘`,
+    "innerHTML": `♞`,
     'short': 'n'
   },
   "bishop":{
-    "innerHTML": `♗`,
+    "innerHTML": `♝`,
     'short': 'b'
   },
   "queen":{
-    "innerHTML": `♕`,
+    "innerHTML": `♛`,
     'short': 'q'
   },
   "king":{
-    "innerHTML": `♔`,
+    "innerHTML": `♚`,
     'short': 'k'
   }
 }
@@ -41,18 +41,16 @@ export class ChessGame extends HTMLElement{
   // Implement fen notation
   convertFenToPieces(fen, board){
     let boardIndex = 0;
-    fen = fen.substring(0, fen.length-13)
+    fen = fen.split(" ")[0]
     for(let i = 0; i < fen.length; i++){       
       let tile = board.querySelector(`[tile-index="${boardIndex}"]`)
       let char = fen[i];
       console.log(char)
       if(!isNaN(char - parseFloat(char))){
         boardIndex+=parseInt(char);
-        console.log("HELP", boardIndex)
       }
       else{
       Object.keys(PieceType).forEach((current)=>{
-
           if(char.toLowerCase() == PieceType[current].short){
             let chessPiece = document.createElement('chess-piece');
             chessPiece.setAttribute('type',current);
@@ -99,7 +97,7 @@ export class ChessGame extends HTMLElement{
     this.convertFenToPieces(this.fenNotation, this.board)
       
     this.display = document.createElement('chess-display');
-    this.display.innerHTML = "<p>I hate chess</p>"
+    this.display.innerHTML = `<p>${this.fenNotation}</p>`
 
     this.appendChild(this.display)
   }
@@ -143,25 +141,15 @@ export class ChessPiece extends HTMLElement{
         this.style.left = e.pageX - shiftX + 'px';
         this.style.top = e.pageY - shiftY + 'px';
       }
-
-      document.body.append(this)
-      moveTo(e)
+      
+      //tile.classList.add("possible-move")
 
       const getPositions = (element) => {
         var pos = element.getBoundingClientRect();
         return pos;
       }
 
-      const comparePositions = (p1, p2) => {
-        return p1.left < p2.left && p2.left < p1.right && p1.top < p2.top && p2.top < p1.bottom
-      }
-      
-      const mouseMovement = (e) => {
-        moveTo(e);
-
-        if(this.lastExecution+10> Date.now()){
-          return
-        }
+      const checkForHoverTiles = () =>{
         chesstiles.forEach((current, index) => {
           let pos1 = getPositions(this)
           let pos2 = getPositions(current)
@@ -171,8 +159,27 @@ export class ChessPiece extends HTMLElement{
            setTimeout(()=>{current.classList.remove('drag-over')}, 1000)
           }
         })
+      }
+
+      const comparePositions = (p1, p2) => {
+        return p1.left < p2.left && p2.left < p1.right && p1.top < p2.top && p2.top < p1.bottom
+      }
+      
+      const mouseMovement = (e) => {
+        moveTo(e);
+
+        if(this.lastExecution+100> Date.now()){
+          return
+        }
+
+        checkForHoverTiles();
+
         this.lastExecution = Date.now();
       }
+
+      document.body.append(this)
+      moveTo(e);
+      checkForHoverTiles();
 
       document.addEventListener('mousemove', mouseMovement)
 
