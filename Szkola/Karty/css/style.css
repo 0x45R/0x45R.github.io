@@ -60,6 +60,6 @@ body{
   font-size: 5vmin;
   margin: .8em;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: center;
 }
