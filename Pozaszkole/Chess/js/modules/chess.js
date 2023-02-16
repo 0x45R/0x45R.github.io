@@ -38,6 +38,42 @@ export class ChessGame extends HTMLElement{
     this.setAttribute('fen', val)
   }
 
+  convertPiecesToFen(){
+    let fen = ""
+    let count = 0
+    for(let c = 0; c < 8; c++){
+      for(let r = 0; r < 8; r++){
+        let tile = this.board.querySelector(`[tile-index="${r+c*8}"]`)
+        let children = Array.from(tile.children)
+        if(children.length != 0){
+          if(count > 0){
+            fen+=count
+          }
+          count = 0;
+          children.forEach((current, index)=>{
+            let pieceType = current.pieceTypeObject;
+            // (char == char.toLowerCase()) ? chessPiece.setAttribute('color', 'black') : chessPiece.setAttribute('color', 'white')
+
+            fen += (current.pieceColor == "black") ? pieceType.short : pieceType.short.toUpperCase()
+            console.log(pieceType.short)
+          })
+        }else{
+          count++;
+        }
+        if(r==7){
+          if(count > 0){
+            fen+=count
+          }
+          fen+="/"
+          count = 0
+        }
+      }
+    }
+    this.fenNotation = fen
+
+    this.display.innerHTML = `<p>${this.fenNotation}</p>`
+  }
+
   // Implement fen notation
   convertFenToPieces(fen, board){
     let boardIndex = 0;
@@ -95,7 +131,7 @@ export class ChessGame extends HTMLElement{
     this.appendChild(this.board)
      
     this.convertFenToPieces(this.fenNotation, this.board)
-      
+    
     this.display = document.createElement('chess-display');
     this.display.innerHTML = `<p>${this.fenNotation}</p>`
 
@@ -118,6 +154,8 @@ export class ChessTile extends HTMLElement{
 export class ChessPiece extends HTMLElement{
   constructor(){
     super();
+    this.game = this.parentElement.parentElement.parentElement
+    console.log(this.game)
   }
 
   get pieceColor(){
@@ -126,6 +164,10 @@ export class ChessPiece extends HTMLElement{
 
   get pieceType(){
     return this.getAttribute('type')
+  }
+
+  get pieceTypeObject(){
+    return PieceType[this.pieceType]
   }
 
   connectedCallback(){
@@ -188,12 +230,13 @@ export class ChessPiece extends HTMLElement{
         this.mouseup = null
         this.style = null
         this.classList.remove("dragged")
-        this.hover.transferPiece(this)
+        this.hover.transferPiece(this);
+        this.game.convertPiecesToFen()
 
       })
     })
 
-    this.innerHTML = PieceType[this.pieceType].innerHTML
+    this.innerHTML = this.pieceTypeObject.innerHTML
   }
 }
 

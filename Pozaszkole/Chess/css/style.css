@@ -11,6 +11,7 @@ body{
   align-items: center;
   height: 100vh;
   font-size: 9vmin;
+  font-family: Open Sans;
 }
 .dragged{
   color: limegreen;
@@ -21,6 +22,8 @@ chess-tile{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: .1em;
+  font-weight: 600;
 }
 
 chess-tile.black{
@@ -31,9 +34,8 @@ chess-tile.white{
   background: antiquewhite;
 }
 
-.drag-over{
-  border: .1em solid rgba(0,255,0,0.6);
-  box-sizing: content-box;
+chess-tile.drag-over{
+  border: .1em solid rgba(255,255,0,0.6);
 }
 
 chess-tile.possible-move::before{
@@ -44,18 +46,43 @@ chess-tile.possible-move::before{
   border-radius: 50%;
 }
 
+chess-tile::after{
+  content:"a";
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+  font-size: .3em;
+  box-sizing: content-box;
+}
+
+chess-tile::before{
+  content:"1";
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  width: 100%;
+  height: 100%;
+  font-size: .3em;
+  box-sizing: content-box;
+}
+
+
 chess-piece{
-  height: 1em;
-  width: 1em;
-  font-size: .8em;
+  height: 4vmin;
+  width: 4vmin;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   position: absolute;
   user-select: none;
-
 }
 
 chess-piece[color='white']{
-  color: whitesmoke;
+  color: antiquewhite;
   -webkit-text-stroke: .025em black;
 }
 
@@ -76,12 +103,12 @@ chess-display{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8em;padding: 3.5em;
+  height: 8em;padding: 3em;
   background-color: peru;
   color: antiquewhite;
   font-family: Merriweather;
   font-weight: 800;
-  border-top: 1em ridge saddlebrown;
+  border-top: 2em ridge saddlebrown;
 }
 
 chess-board{
