@@ -25,6 +25,8 @@ export const PieceType = {
   }
 }
 
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
 export class ChessGame extends HTMLElement{
   constructor(){
     super();
@@ -69,7 +71,7 @@ export class ChessGame extends HTMLElement{
         }
       }
     }
-    this.fenNotation = fen
+    this.fenNotation = fen.substring(0, fen.length - 1)
 
     this.display.innerHTML = `<p>${this.fenNotation}</p>`
   }
@@ -121,8 +123,9 @@ export class ChessGame extends HTMLElement{
       for(let r = 0; r < 8; r++){
         let tile = document.createElement('chess-tile');
 
-        (c+r)%2 ? tile.classList.add("black") : tile.classList.add("white")
-        //tile.innerHTML = `<p>${r+c*8}</p>`
+        (c+r)%2 ? tile.setAttribute("color","black") : tile.setAttribute("color","white")
+        if(r==0){tile.setAttribute('top-left-corner', Math.abs((c)-8))}
+        if(c==7){tile.setAttribute('bottom-right-corner',alphabet[r])}
         tile.setAttribute('tile-index', r+c*8)
         this.board.appendChild(tile)
 
@@ -130,7 +133,7 @@ export class ChessGame extends HTMLElement{
     }
     this.appendChild(this.board)
      
-    this.convertFenToPieces(this.fenNotation, this.board)
+    this.convertFenToPieces(this.fenNotation, this.board);
     
     this.display = document.createElement('chess-display');
     this.display.innerHTML = `<p>${this.fenNotation}</p>`
@@ -155,7 +158,6 @@ export class ChessPiece extends HTMLElement{
   constructor(){
     super();
     this.game = this.parentElement.parentElement.parentElement
-    console.log(this.game)
   }
 
   get pieceColor(){
