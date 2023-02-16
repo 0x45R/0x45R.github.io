@@ -16,7 +16,7 @@ body{
 .card-container{
   background: white;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   height: 11em;
