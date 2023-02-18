@@ -13,8 +13,17 @@ body{
   font-size: 8vmin;
   font-family: Open Sans;
 }
-.dragged{
-  color: limegreen;
+
+
+
+.distance{
+  font-size: .2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  user-select: none;
+  text-align: center;
+  flex: 1;
 }
 
 chess-tile{
@@ -24,6 +33,7 @@ chess-tile{
   align-items: center;
   border: .1em solid rgba(0,0,0,0);
   font-weight: 600;
+  position: relative;
 }
 
 chess-tile[color="black"]{
@@ -35,15 +45,13 @@ chess-tile[color="white"]{
 }
 
 chess-tile.drag-over{
-  border: .1em solid rgba(255,255,0,0.6);
+  border: .1em solid rgba(200,200,200,0.6);
 }
-
-chess-tile.possible-move::before{
-  content: ' ';
-  background-color: limegreen;
-  padding: .25em;
-  font-size: .5em;
-  border-radius: 50%;
+chess-tile.invalid-move{
+  border: .1em solid rgba(255,0,0,0.6);
+}
+chess-tile.selected-piece{
+  border: .1em solid rgb(50,205,50,0.8);
 }
 
 chess-tile::after{
@@ -56,6 +64,8 @@ chess-tile::after{
   font-size: .2em;
   font-weight: 800;
   box-sizing: content-box;
+  position: absolute;
+  pointer-events: none;
 }
 
 chess-tile::before{
@@ -68,8 +78,58 @@ chess-tile::before{
   font-size: .2em;
   font-weight: 800;
   box-sizing: content-box;
+  position: absolute;
+  pointer-events: none;
 }
 
+.possible-move::before{
+  content: ' ';
+  background-color: limegreen;
+  padding: .25em;
+  font-size: .5em;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+}
+.possible-move::after{
+  content: ' ';
+  background-color: limegreen;
+  padding: .25em;
+  font-size: .5em;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+}
+.possible-capture::before{
+  content: ' ';
+  background-color: gold;
+  padding: .25em;
+  font-size: .5em;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+}
+.possible-move::after{
+  content: ' ';
+  background-color: limegreen;
+  padding: .25em;
+  font-size: .5em;
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  pointer-events: none;
+}
 chess-tile[color='white']::before{
   color: peru;
 }
@@ -96,6 +156,7 @@ chess-piece{
   user-select: none;
   font-weight: 100;
 }
+
 
 chess-piece[color='white']{
   color: antiquewhite;
@@ -139,4 +200,7 @@ chess-board{
   grid-template-rows: repeat(8, 1fr);
 }
 
+chess-piece.dragged{
+
+}
 
