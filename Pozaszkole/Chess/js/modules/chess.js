@@ -298,7 +298,7 @@ export class ChessGame extends HTMLElement{ // Main class
           }
         }) 
 
-        if(true){
+        if(false){
           tile.appendChild(distance)
         }
 
