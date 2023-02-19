@@ -1,3 +1,9 @@
+// TODO
+// Two player mode
+// main menu
+// settings
+// multiple board sizes
+
 function generate_attribute_template(that, attrName, defaultValue){
   if(!that.hasAttribute(attrName)){
     that.setAttribute(attrName, defaultValue)
@@ -75,7 +81,7 @@ class Board extends HTMLElement{
             else{
               break;
             }
-            if(this.tileByIndex(index).type != thisPlayer){
+            if(this.tileByIndex(index).type != thisPlayer || this.tileByIndex(index).state != "solid"){
               break;
             }else{
               score++;
@@ -83,7 +89,6 @@ class Board extends HTMLElement{
           }
 
           if(score==3){
-            console.log("TYPE",type)
             return (thisPlayer == "circle") ? Score.win : Score.lost
           }
         }
@@ -105,15 +110,13 @@ class Board extends HTMLElement{
           else{
             break;
           }
-          console.log(this.tileByIndex(index))
-          if(this.tileByIndex(index).type != thisPlayer){
+          if(this.tileByIndex(index).type != thisPlayer || this.tileByIndex(index).state !="solid"){
             break;
           }else{
             score++;
           }
         }
         if(score==3){
-          console.log("TYPE",type)
           return (thisPlayer == "circle") ? Score.win : Score.lost
         }  
       }
@@ -235,7 +238,7 @@ class TicTacToe extends HTMLElement{
   }
 
   connectedCallback(){
-    this.innerHTML = `<div class='game-information'><p class='title'>tic-tac-toe</p><p>You play as <span class='human_player'>${this.humanPlayer}</span></p><p>Current player: <span class='current_player'>${this.currentPlayer}</span></p></div><ttc-board></ttc-board>`
+    this.innerHTML = `<div class='game-information'><p class='title'>tic-tac-toe</p></div><ttc-board></ttc-board>`
   }
 }
 

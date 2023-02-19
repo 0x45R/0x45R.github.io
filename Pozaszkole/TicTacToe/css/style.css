@@ -11,6 +11,7 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 5vmin;
+  flex-flow: row wrap;
   font-family: Montserrat;
   user-select: none;
 }
