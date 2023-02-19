@@ -85,6 +85,17 @@ ttc-tile{
   transition: 1s all;
   color: white;
   text-align: center;
+  position: relative;
+}
+
+ttc-tile::after{
+  content: attr(index);
+  bottom: 0;
+  right: 0;
+  font-size: 5vmin;
+  position: absolute;
+  color: white;
+  opacity: 1;
 }
 
 ttc-tile[state="solid"]{
