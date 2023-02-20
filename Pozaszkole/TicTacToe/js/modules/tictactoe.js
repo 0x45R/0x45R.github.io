@@ -60,8 +60,44 @@ class Board extends HTMLElement{
   }
 
   calculateScore(){
-    // THAT CODE IS SO AWFUL I HATE IT
-    let players = ["circle", "cross"];
+    // now it's better
+    let players = ["circle", "cross"]
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ]; // Make a function to generate those winning combinations based on board size
+
+    for(let playerIndex =  0; playerIndex < players.length; playerIndex++){
+      let thisPlayer = players[playerIndex];
+      for(let combinationsIndex = 0; combinationsIndex < winningCombinations.length; combinationsIndex++){
+        let thisCombination = winningCombinations[combinationsIndex];
+        let score = 0;
+        for(let tileIndex = 0; tileIndex < thisCombination.length; tileIndex++){
+          let thisTile = this.tileByIndex(thisCombination[tileIndex]);
+          if(thisTile.type == thisPlayer && thisTile.state == "solid"){
+            score ++;
+          }
+          else{
+            break;
+          }
+        }
+        if(score == 3){
+          return (thisPlayer == this.game.humanPlayer) ? Score.win : Score.lost
+        }
+      }
+    }
+
+    if(this.emptySquares.length == 0){
+      return Score.stalemate;
+    }
+    return Score.playing
+     // OLD CODE (i'm keeping it because i think it will work better with non-standard board sizes but idk)
     let types = ["horizontal","vertical", "diagonal", "inverse_diagonal"]
     for(let p = 0; p < players.length; p++){
       for(let t = 0; t < types.length; t++){
@@ -121,10 +157,7 @@ class Board extends HTMLElement{
         }  
       }
     }
-    if(this.emptySquares.length == 0){
-      return Score.stalemate;
-    }
-    return Score.playing
+
   }
 
   finishedMove(){
@@ -168,7 +201,6 @@ class AIPlayer{
   static calculateMove(board){
     let emptySquares = board.emptySquares;
     let chosenSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
-    console.log(chosenSquare)
     chosenSquare.mark(board.game.aiPlayer);
   }
 }
@@ -314,7 +346,7 @@ class Tile extends HTMLElement{
       if(this.state == "solid" || this.game.currentPlayer != this.game.humanPlayer){
         return false;
       }
-      if(this.type == "blank" && this.state != "solid"){
+      if(this.type == "blank"){
         this.type= this.game.currentPlayer;
         this.animate(keyframes, options)
       }
